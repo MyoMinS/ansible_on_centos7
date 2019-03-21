@@ -1,0 +1,5 @@
+[fuga_vms:vars]
+ansible_python_interpreter=/usr/bin/env python3
+
+[fuga_vms]
+Your_Instance_IP
