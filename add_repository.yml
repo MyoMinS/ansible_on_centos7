@@ -9,11 +9,8 @@
 
       - name: Add ownCloud repository
         yum_repository:
-           name: wnCloud Server Version 10.1.x (CentOS_7)
+           name: epel
            description: EPEL YUM repo
-           baseurl: https://download.owncloud.org/download/repositories/stable/CentOS_7/ce:stable.repo
+           baseurl: https://download.owncloud.org/download/repositories/stable/CentOS_7/ce:stable.repo -o /etc/yum.repos.d/ownCloud.repo
            state: present
-         
-        rpm_key:
-           key: https://download.owncloud.org/download/repositories/stable/CentOS_7/repodata/repomd.xml.key
-           state: present
+
