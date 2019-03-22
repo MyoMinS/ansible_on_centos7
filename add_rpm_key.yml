@@ -1,0 +1,8 @@
+---
+  - name: Install rpm-key from owncloud
+    hosts: localhost
+    tasks:
+      - name: Add rpm-key from ownCloud
+        rpm_key:
+           key: https://download.owncloud.org/download/repositories/stable/CentOS_7/repodata/repomd.xml.key
+           state: present
