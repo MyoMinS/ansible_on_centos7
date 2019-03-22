@@ -26,17 +26,21 @@
 
     - name: Add rpm-key from ownCloud
       rpm_key:
-        url: https://download.owncloud.org/download/repositories/stable/CentOS_7/repodata/repomd.xml.key
+        key: http://download.owncloud.org/download/repositories/stable/CentOS_7/repodata/repomd.xml.key
         state: present
 
     - name: Add ownCloud repository
       yum_repository:
-        baseurl: https://download.owncloud.org/download/repositories/stable/CentOS_7/ /
+        name: ownCloud
+        description: EPEL Yum Repo
+        gpgcheck: yes
+        baseurl: http://download.owncloud.org/download/repositories/stable/CentOS_7/
+        gpgkey: http://download.owncloud.org/download/repositories/stable/CentOS_7/repodata/repomd.xml.key
         state: present
 
     - name: Install / Download ownCloud
       yum:
-        name: owncloud
+        name: owncloud-files
         state: present
 
     - name: Create 'owncloud' Database
