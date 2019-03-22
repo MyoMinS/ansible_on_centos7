@@ -1,0 +1,21 @@
+---
+
+- name: This sets up an httpd webserver
+  hosts: host1
+  tasks:
+
+   - name: Install common software requirements
+     become: true
+     yum: 
+        name: "{{ item }}" 
+        state: present
+     vars: 
+        item:
+            - httpd
+            - mariadb-server
+            - openssl 
+            - wget
+            - git 
+   - name: httpd web service restart 
+     command: "systemctl restart httpd"
+    

@@ -1,0 +1,19 @@
+---
+
+- name: This sets up an httpd webserver
+  hosts: host1
+  tasks:
+
+   - name: Install common software requirements
+     become: true
+     yum: 
+        name: "{{ item }}" 
+        state: absent
+     vars: 
+        item:
+            - httpd
+            - mariadb-server
+            - openssl 
+            - wget
+            - git 
+    
