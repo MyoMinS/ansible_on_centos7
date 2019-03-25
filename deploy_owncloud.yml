@@ -8,9 +8,9 @@
       vars:
         items:
             - httpd
+            - mariadb
             - mariadb-server
             - MySQL-python
-            - openssl
             - php-common
             - php-curl
             - php-xml
@@ -27,6 +27,12 @@
             - php-process
             - php-xml
 
+    - name: enable mariadb server
+      command: "systemctl enable httpd.service"
+
+    - name: Start mariadb server
+      command: "systemctl restart httpd.service"
+  
     - name: Add rpm-key from ownCloud
       rpm_key:
         key: http://download.owncloud.org/download/repositories/stable/CentOS_7/repodata/repomd.xml.key
@@ -40,12 +46,22 @@
         baseurl: http://download.owncloud.org/download/repositories/stable/CentOS_7/
         gpgkey: http://download.owncloud.org/download/repositories/stable/CentOS_7/repodata/repomd.xml.key
         state: present
-
+        
+    - name: the clean command to make yum aware of the change
+      command: "yum clean expire-cache"
+      
     - name: Install / Download ownCloud
       yum:
         name: owncloud-files
         state: present
 
+    - name: enable mariadb server
+      command: "systemctl enable mariadb.service"
+
+    - name: Start mariadb server
+      command: "systemctl restart mariadb.service"
+
+    
     - name: Create 'owncloud' Database
       mysql_db:
         name: owncloud
@@ -54,7 +70,25 @@
     - name: Change password of owncloud database user
       command: >
         mysql -u root --execute="GRANT ALL ON owncloud.* to 'owncloud'@'localhost' IDENTIFIED BY 'password'; FLUSH PRIVILEGES;"
+        
+        
+    - name: Install required packages for ownCloud
+      yum:
+        name: "{{repo}}"
+        state: present
+      vars:
+        repo:
+            - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+            - yum-utils
 
+    - name: Install php 70
+      command: "yum-config-manager --enable remi-php70"
+
+    - name: upgrade all packages
+      yum:
+        name: '*'
+        state: latest
+        
     - name: Restart Apache
       command: "systemctl reload httpd"
 
