@@ -9,6 +9,7 @@
         items:
             - httpd
             - mariadb-server
+            - MySQL-python
             - openssl
             - php-common
             - php-curl
