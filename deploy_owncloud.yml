@@ -7,22 +7,24 @@
         state: present
       vars:
         items:
-           - httpd
-           - mariadb-server
-           - openssl
-           - php-common
-           - php-curl
-           - php-gd
-           - php-imap
-           - php-intl
-           - php-json
-           - php-ldap
-           - php-mbstring
-           - php-mcrypt
-           - php-mysql
-           - php-pgsql
-           - php-xml
-           - php-zip
+            - httpd
+            - mariadb-server
+            - openssl
+            - php-common
+            - php-curl
+            - php-xml
+            - php-common
+            - php-mcrypt
+            - php-pgsql
+            - php-imap
+            - php-gd
+            - php-mbstring
+            - php-ldap
+            - php-pdo
+            - php-mysql
+            - php-intl
+            - php-process
+            - php-xml
 
     - name: Add rpm-key from ownCloud
       rpm_key:
