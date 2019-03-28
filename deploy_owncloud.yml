@@ -1,5 +1,5 @@
 - name: Deploy Owncloud
-  hosts: host1
+  hosts: localhost
   tasks:
     - name: Install required packages for ownCloud
       yum: 
