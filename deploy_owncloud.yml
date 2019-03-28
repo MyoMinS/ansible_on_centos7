@@ -97,7 +97,7 @@
       firewalld:
         service: http
         permanent: true
-        state: enable
+        state: enabled
     - name: Restart the firewalld service to load in the 
       service:
         name: firewalld
