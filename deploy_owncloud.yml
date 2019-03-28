@@ -101,6 +101,7 @@
         name: firewalld
         state: restarted 
         
+    
     - name:  httpd is restart
       service: 
         name: httpd
