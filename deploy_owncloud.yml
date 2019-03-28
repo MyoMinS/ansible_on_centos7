@@ -33,10 +33,14 @@
             - php-zip
 
     - name: enable mariadb server
-      command: "systemctl enable httpd.service"
+      service: 
+        name: mariadb
+        state: enabled
 
     - name: Start mariadb server
-      command: "systemctl restart httpd.service"
+      service: 
+        name: mariadb
+        state: started
   
     - name: Add rpm-key from ownCloud
       rpm_key:
@@ -59,13 +63,6 @@
       yum:
         name: owncloud-files
         state: present
-
-    - name: enable mariadb server
-      command: "systemctl enable mariadb.service"
-
-    - name: Start mariadb server
-      command: "systemctl restart mariadb.service"
-
     
     - name: Create 'owncloud' Database
       mysql_db:
@@ -94,6 +91,19 @@
         name: '*'
         state: latest
         
-    - name: Restart Apache
-      command: "systemctl reload httpd"
+    - name: open port 80 for httpd access
+      firewalld:
+        service: https
+        permanent: true
+        state: enable
+    - name: Restart the firewalld service to load in the 
+      service:
+        name: firewalld
+        state: restarted 
+        
+    - name:  httpd is restart
+      service: 
+        name: httpd
+        state: restarted
+        
 
