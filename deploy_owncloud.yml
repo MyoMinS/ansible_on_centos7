@@ -36,12 +36,13 @@
     - name: enable mariadb server
       service: 
         name: mariadb
-        state: enabled
+        enabled: yes
 
     - name: Start mariadb server
       service: 
         name: mariadb
         state: started
+        
   
     - name: Add rpm-key from ownCloud
       rpm_key:
@@ -94,7 +95,7 @@
         
     - name: open port 80 for httpd access
       firewalld:
-        service: https
+        service: http
         permanent: true
         state: enable
     - name: Restart the firewalld service to load in the 
