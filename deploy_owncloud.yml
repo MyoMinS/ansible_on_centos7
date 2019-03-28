@@ -11,12 +11,12 @@
             - mariadb
             - mariadb-server
             - MySQL-python
+            - php
             - php-common
             - php-curl
             - php-xml
             - php-common
             - php-mcrypt
-            - php-pgsql
             - php-imap
             - php-gd
             - php-mbstring
