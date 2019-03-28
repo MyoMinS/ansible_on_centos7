@@ -31,6 +31,7 @@
             - mysql
             - mariadb-devel
             - php-zip
+            - php-pecl-zip
 
     - name: enable mariadb server
       service: 
