@@ -15,7 +15,6 @@
             - php-common
             - php-curl
             - php-xml
-            - php-common
             - php-mcrypt
             - php-imap
             - php-gd
@@ -26,6 +25,12 @@
             - php-intl
             - php-process
             - php-xml
+            - php-json
+            - php-pear-DB
+            - php-pecl-imagick
+            - mysql
+            - mariadb-devel
+            - php-zip
 
     - name: enable mariadb server
       command: "systemctl enable httpd.service"
