@@ -86,7 +86,7 @@
             - yum-utils
 
     - name: Install php 70
-      command: "yum-config-manager --enable remi-php70"
+      command: "yum-config-manager --enable remi-php72"
 
     - name: upgrade all packages
       yum:
